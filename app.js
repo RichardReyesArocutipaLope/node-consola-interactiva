@@ -1,5 +1,6 @@
 import colors from "colors";
 import {
+  confirmar,
   inquirerMenu,
   leerInput,
   listadoTareaBorrar,
@@ -33,7 +34,13 @@ const main = async () => {
         break;
       case "6":
         const id = await listadoTareaBorrar(tareas.listadoArr);
-        console.log(id);
+        if (id !== "0") {
+          const ok = await confirmar("¿Está seguro?");
+          if (ok) {
+            tareas.borrarTarea(id);
+            console.log("Tarea borrada correctamente");
+          }
+        }
         break;
     }
 

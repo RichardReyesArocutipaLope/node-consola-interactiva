@@ -90,6 +90,11 @@ export const listadoTareaBorrar = async (tareas = []) => {
     };
   });
 
+  choices.unshift({
+    value: "0",
+    name: "0.".green + " Cancelar",
+  });
+
   const preguntas = [
     {
       type: "list",
@@ -101,4 +106,18 @@ export const listadoTareaBorrar = async (tareas = []) => {
 
   const { id } = await inquirer.prompt(preguntas);
   return id;
+};
+
+export const confirmar = async (message) => {
+  const question = [
+    {
+      type: "confirm",
+      name: "ok",
+      message,
+    },
+  ];
+
+  const { ok } = await inquirer.prompt(question);
+
+  return ok;
 };
