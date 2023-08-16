@@ -1,13 +1,12 @@
 import colors from "colors";
-import { inquirerMenu } from "./helpers/inquirer.js";
+import { inquirerMenu, pausa } from "./helpers/inquirer.js";
 
 const main = async () => {
-  console.log("Hola mundo");
-
   let opt = "";
   do {
     opt = await inquirerMenu();
     console.log({ opt });
+    await pausa();
   } while (opt !== "0");
 };
 
