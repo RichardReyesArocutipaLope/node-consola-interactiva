@@ -121,3 +121,26 @@ export const confirmar = async (message) => {
 
   return ok;
 };
+
+export const mostrarListadoChecklist = async (tareas = []) => {
+  const choices = tareas.map((tarea, index) => {
+    const idx = `${index + 1}`.green;
+    return {
+      value: tarea.id,
+      name: `${idx}. ${tarea.desc}`,
+      checked: tarea.completadoEn ? true : false,
+    };
+  });
+
+  const preguntas = [
+    {
+      type: "checkbox",
+      name: "ids",
+      message: "Seleccione",
+      choices,
+    },
+  ];
+
+  const { ids } = await inquirer.prompt(preguntas);
+  return ids;
+};
